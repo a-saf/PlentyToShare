@@ -1,4 +1,4 @@
-package com.sofe4640.plentytoshare;
+package com.mobiledev.plentytoshare;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.sofe4640.plentytoshare", appContext.getPackageName());
+        assertEquals("com.mobiledev.plentytoshare", appContext.getPackageName());
     }
 }

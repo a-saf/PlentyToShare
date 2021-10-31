@@ -1,4 +1,4 @@
-package com.sofe4640.plentytoshare;
+package com.mobiledev.plentytoshare;
 
 import org.junit.Test;
 
