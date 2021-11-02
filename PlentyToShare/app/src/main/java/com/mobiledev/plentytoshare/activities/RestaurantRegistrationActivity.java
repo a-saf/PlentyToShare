@@ -1,4 +1,4 @@
-package com.mobiledev.plentytoshare;
+package com.mobiledev.plentytoshare.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +10,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.mobiledev.plentytoshare.R;
+import com.mobiledev.plentytoshare.models.Restaurant;
 
-public class RestaurantRegistration extends AppCompatActivity {
+
+public class RestaurantRegistrationActivity extends AppCompatActivity {
 
     DatabaseReference ref;
 
@@ -51,7 +54,13 @@ public class RestaurantRegistration extends AppCompatActivity {
 
     public void createAccount(View view) {
 
-        Restaurant res = new Restaurant(showUsername.getText().toString(), showPassword.getText().toString(), showPhoneNumber.getText().toString(), showFoodType.getText().toString(), showRestaurantName.getText().toString(), showRegistrationId.getText().toString(), showAddress.getText().toString());
+        Restaurant res = new Restaurant(showUsername.getText().toString(),
+                                        showPassword.getText().toString(),
+                                        showPhoneNumber.getText().toString(),
+                                        showFoodType.getText().toString(),
+                                        showRestaurantName.getText().toString(),
+                                        showRegistrationId.getText().toString(),
+                                        showAddress.getText().toString());
 
         ref.child(res.username).setValue(res);
 

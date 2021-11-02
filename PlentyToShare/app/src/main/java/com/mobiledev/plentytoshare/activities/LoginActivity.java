@@ -1,8 +1,10 @@
-package com.mobiledev.plentytoshare;
+package com.mobiledev.plentytoshare.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.mobiledev.plentytoshare.R;
 
 public class LoginActivity extends AppCompatActivity {
 

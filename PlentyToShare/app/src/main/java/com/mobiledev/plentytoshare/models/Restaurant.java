@@ -1,7 +1,6 @@
-package Models;
+package com.mobiledev.plentytoshare.models;
 
 public class Restaurant {
-
     public String username;
     public String password;
     public String phoneNumber;
