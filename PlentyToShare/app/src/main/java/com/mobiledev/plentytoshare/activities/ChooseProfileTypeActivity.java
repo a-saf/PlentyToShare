@@ -1,31 +1,28 @@
 package com.mobiledev.plentytoshare.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.mobiledev.plentytoshare.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class ChooseProfileTypeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_choose_profile_type);
 
-        Button newAccountBtn = findViewById(R.id.register_button);
-        newAccountBtn.setOnClickListener(new View.OnClickListener() {
+        Button restaurantBtn = findViewById(R.id.btn_restaurant);
+        restaurantBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ChooseProfileTypeActivity.class);
+                Intent intent = new Intent(view.getContext(), RestaurantRegistrationActivity.class);
                 startActivity(intent);
             }
         });
-
-
     }
-
 }

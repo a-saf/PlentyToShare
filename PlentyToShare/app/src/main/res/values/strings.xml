@@ -14,4 +14,6 @@
     <string name="forgot_username_password">Forgot Username/Password</string>
     <string name="remember_password">Remember Password</string>
     <string name="enter_password">Enter Password</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="charity">Charity</string>
 </resources>
