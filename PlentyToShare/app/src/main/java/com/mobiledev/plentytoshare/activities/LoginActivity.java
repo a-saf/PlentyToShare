@@ -25,6 +25,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        Button loginBtn = findViewById(R.id.signin_button);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), RestaurantCalendarActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
