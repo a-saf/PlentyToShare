@@ -26,4 +26,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurant_calendar" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addEvent_btn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/primary"
+        android:clickable="true"
+        android:contentDescription="@string/add_new_event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/outline_add_white_36"
+        app:fabCustomSize="70dp"
+        app:maxImageSize="50dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
