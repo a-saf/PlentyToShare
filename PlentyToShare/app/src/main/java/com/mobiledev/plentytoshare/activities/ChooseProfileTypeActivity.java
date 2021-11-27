@@ -28,5 +28,14 @@ public class ChooseProfileTypeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button charityBtn = findViewById(R.id.btn_charity);
+        charityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CharitiesRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobiledev.plentytoshare.R;
-import com.mobiledev.plentytoshare.models.CalendarEvent;
+import com.mobiledev.plentytoshare.models.Orders;
 
 import java.util.ArrayList;
 
 public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestaurant.RestaurantEventViewHolder> {
 
-    private final ArrayList<CalendarEvent> restaurantEvents;
+    private final ArrayList<Orders> restaurantEvents;
     private RestaurantEventViewHolder.OnEventItemListener  evListener;
 
-    public RVAdapterRestaurant(ArrayList<CalendarEvent> restaurantEvents, RestaurantEventViewHolder.OnEventItemListener evListener) {
+    public RVAdapterRestaurant(ArrayList<Orders> restaurantEvents, RestaurantEventViewHolder.OnEventItemListener evListener) {
         this.restaurantEvents = restaurantEvents;
         this.evListener = evListener;
     }
@@ -66,7 +66,7 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
         }
 
         // Render address and coordinates as list items visible on main activity view
-        void setEvent(CalendarEvent calEvent) {
+        void setEvent(Orders calEvent) {
             date.setText(String.valueOf(calEvent.getDate()));
             servingsAvailable.setText(calEvent.getNumOfServings());
             pickupTime.setText(String.valueOf(calEvent.getPickupTime()));

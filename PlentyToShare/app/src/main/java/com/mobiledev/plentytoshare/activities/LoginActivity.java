@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), RestaurantCalendarActivity.class);
+                Intent intent = new Intent(view.getContext(), RestaurantPosting.class);
                 startActivity(intent);
             }
         });
