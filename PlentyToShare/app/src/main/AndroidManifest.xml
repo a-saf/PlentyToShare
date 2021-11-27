@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlentyToShare">
         <activity
+            android:name=".activities.CharitiesRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CharitiesRequest"
+            android:exported="false" />
+        <activity
             android:name=".activities.RestaurantCalendarActivity"
             android:exported="false" />
         <activity
