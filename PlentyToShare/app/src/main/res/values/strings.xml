@@ -17,4 +17,9 @@
     <string name="restaurant">Restaurant</string>
     <string name="charity">Charity</string>
     <string name="add_new_event">Add new event</string>
+    <string name="idCharity">Charity ID</string>
+    <string name="radio_button_charity">Charity</string>
+    <string name="radio_button_restaurant">Restaurant</string>
+    <string name="youtube_profile">YouTube Profile</string>
+    <string name="charity_name">Charity Name</string>
 </resources>

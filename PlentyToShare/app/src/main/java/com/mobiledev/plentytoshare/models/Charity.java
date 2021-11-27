@@ -1,29 +1,25 @@
 package com.mobiledev.plentytoshare.models;
 
-public class Restaurant {
+public class Charity {
     public String username;
     public String password;
     public String phoneNumber;
-    public String foodType;
-    public String restaurantName;
+    public String charityName;
     public String registrationID;
     public String address;
-    public String youtube;
 
-    public Restaurant() {
+    public Charity() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Restaurant(String username, String password, String phoneNumber, String foodType, String restaurantName, String registrationID, String address, String youtube) {
+    public Charity(String username, String password, String phoneNumber, String charityName, String registrationID, String address) {
 
         this.username = username;
         this.password = password;
         this.phoneNumber=phoneNumber;
-        this.foodType=foodType;
-        this.restaurantName=restaurantName;
+        this.charityName=charityName;
         this.registrationID=registrationID;
         this.address=address;
-        this.youtube = youtube;
     }
 
     public String getUsername() {
@@ -50,20 +46,12 @@ public class Restaurant {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFoodType() {
-        return foodType;
+    public String getCharityName() {
+        return charityName;
     }
 
-    public void setFoodType(String foodType) {
-        this.foodType = foodType;
-    }
-
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setCharityName(String charityName) {
+        this.charityName = charityName;
     }
 
     public String getRegistrationID() {
@@ -80,13 +68,5 @@ public class Restaurant {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getYoutube() {
-        return youtube;
-    }
-
-    public void setYoutube(String youtube) {
-        this.youtube = youtube;
     }
 }

@@ -1,6 +1,8 @@
 package com.mobiledev.plentytoshare.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 
 
@@ -18,7 +20,6 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
     DatabaseReference ref;
 
-
     TextInputEditText showUsername;
     TextInputEditText showPassword;
     TextInputEditText showPhoneNumber;
@@ -26,12 +27,10 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
     TextInputEditText showRestaurantName;
     TextInputEditText showRegistrationId;
     TextInputEditText showAddress;
+    TextInputEditText showYouTube;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_registration);
@@ -43,16 +42,15 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         this.showRestaurantName = findViewById(R.id.text_restaurant_name);
         this.showRegistrationId = findViewById(R.id.text_registration_id);
         this.showAddress = findViewById(R.id.text_location);
+        this.showYouTube = findViewById(R.id.text_video_profile);
 
         ref = FirebaseDatabase.getInstance().getReference().child("restaurants");
-
-
-
 
     }
 
 
     public void createAccount(View view) {
+//        boolean validInput = validateInput();
 
         Restaurant res = new Restaurant(showUsername.getText().toString(),
                                         showPassword.getText().toString(),
@@ -60,11 +58,20 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
                                         showFoodType.getText().toString(),
                                         showRestaurantName.getText().toString(),
                                         showRegistrationId.getText().toString(),
-                                        showAddress.getText().toString());
+                                        showAddress.getText().toString(),
+                                        showYouTube.getText().toString());
 
+        //Add Restaurant object under Firebase
         ref.child(res.username).setValue(res);
 
-
-
+        //Navigate to activity where they can post food
+        Intent intent = new Intent(this, RestaurantPosting.class);
+        intent.putExtra("username", this.showUsername.getText());
+        intent.putExtra("phone", this.showPhoneNumber.getText());
+        intent.putExtra("foodType", this.showFoodType.getText());
+        intent.putExtra("name", this.showRestaurantName.getText());
+        intent.putExtra("address", this.showAddress.getText());
+        startActivity(intent);
     }
+
 }

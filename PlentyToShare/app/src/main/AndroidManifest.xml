@@ -16,7 +16,7 @@
             android:name=".activities.CharitiesRequest"
             android:exported="false" />
         <activity
-            android:name=".activities.RestaurantCalendarActivity"
+            android:name=".activities.RestaurantPosting"
             android:exported="false" />
         <activity
             android:name=".activities.ChooseProfileTypeActivity"

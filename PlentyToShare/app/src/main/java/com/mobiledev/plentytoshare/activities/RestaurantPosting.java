@@ -3,17 +3,16 @@ package com.mobiledev.plentytoshare.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 
 import com.mobiledev.plentytoshare.R;
-import com.mobiledev.plentytoshare.models.CalendarEvent;
+import com.mobiledev.plentytoshare.models.Orders;
 
 import java.util.ArrayList;
 
-public class RestaurantCalendarActivity extends AppCompatActivity {
+public class RestaurantPosting extends AppCompatActivity {
 
-    private ArrayList<CalendarEvent> restaurantEvents = new ArrayList<>();
+    private ArrayList<Orders> restaurantEvents = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

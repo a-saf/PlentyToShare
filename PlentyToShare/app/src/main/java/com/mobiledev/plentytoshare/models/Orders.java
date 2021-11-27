@@ -5,22 +5,24 @@ import android.text.format.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
-public class CalendarEvent {
+public class Orders {
 
     private String restaurantID;
     private int numOfServings;
     private Date date;
+    private Date expiryDate;
     private String status;
     private LocalTime pickupTime;
 
-    public CalendarEvent() {}
+    public Orders() {}
 
-    public CalendarEvent(String restaurantID, int numOfServings, Date date, String status, LocalTime pickupTime) {
+    public Orders(String restaurantID, int numOfServings, Date date, String status, LocalTime pickupTime, Date expiryDate) {
         this.restaurantID = restaurantID;
         this.numOfServings = numOfServings;
         this.date = date;
         this.status = status;
         this.pickupTime = pickupTime;
+        this.expiryDate = expiryDate;
     }
 
     public String getStatus() {
@@ -62,4 +64,13 @@ public class CalendarEvent {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
 }
