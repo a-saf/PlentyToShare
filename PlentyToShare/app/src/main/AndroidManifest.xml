@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlentyToShare">
         <activity
+            android:name=".activities.PostActivity"
+            android:parentActivityName=".activities.RestaurantPosting"
+            android:exported="false" />
+        <activity
             android:name=".activities.CharitiesRegistrationActivity"
             android:exported="false" />
         <activity
