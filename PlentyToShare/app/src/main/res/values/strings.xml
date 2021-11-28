@@ -22,4 +22,9 @@
     <string name="radio_button_restaurant">Restaurant</string>
     <string name="youtube_profile">YouTube Profile</string>
     <string name="charity_name">Charity Name</string>
+    <string name="number_of_servings">Number of Servings</string>
+    <string name="food_type">Food Type</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="share_food">Share Food</string>
+    <string name="enter_available_food">Enter Available Food</string>
 </resources>

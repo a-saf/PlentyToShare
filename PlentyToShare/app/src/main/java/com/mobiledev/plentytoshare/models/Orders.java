@@ -1,28 +1,38 @@
 package com.mobiledev.plentytoshare.models;
 
-import android.text.format.Time;
-
 import java.time.LocalTime;
 import java.util.Date;
 
 public class Orders {
 
-    private String restaurantID;
+    private int orderID;
+    private String username;
     private int numOfServings;
-    private Date date;
-    private Date expiryDate;
+    private String date;
+    private String expiryDate;
     private String status;
     private LocalTime pickupTime;
+    private String foodType;
 
     public Orders() {}
 
-    public Orders(String restaurantID, int numOfServings, Date date, String status, LocalTime pickupTime, Date expiryDate) {
-        this.restaurantID = restaurantID;
+    public Orders(int orderID, String username, int numOfServings, String date, String expiryDate, String status, LocalTime pickupTime, String foodType) {
+        this.orderID = orderID;
+        this.username = username;
         this.numOfServings = numOfServings;
         this.date = date;
+        this.expiryDate = expiryDate;
         this.status = status;
         this.pickupTime = pickupTime;
-        this.expiryDate = expiryDate;
+        this.foodType = foodType;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
     public String getStatus() {
@@ -41,12 +51,12 @@ public class Orders {
         this.status = status;
     }
 
-    public String getRestaurantID() {
-        return restaurantID;
+    public String getUsername() {
+        return username;
     }
 
-    public void setRestaurantID(String restaurantID) {
-        this.restaurantID = restaurantID;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getNumOfServings() {
@@ -57,20 +67,27 @@ public class Orders {
         this.numOfServings = numOfServings;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 
+    public String getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(String foodType) {
+        this.foodType = foodType;
+    }
 }
