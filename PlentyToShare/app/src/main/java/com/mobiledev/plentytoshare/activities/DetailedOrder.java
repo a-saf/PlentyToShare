@@ -3,6 +3,7 @@ package com.mobiledev.plentytoshare.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -57,7 +58,7 @@ public class DetailedOrder extends AppCompatActivity {
         view_pickup.setText("Pickup: " + pickup);
         view_type.setText("Food Type: " + intent.getStringExtra("type"));
 
-        FloatingActionButton deleteButton = findViewById(R.id.detail_delete_record_button);
+        Button deleteButton = findViewById(R.id.delete_btn);
         deleteButton.setOnClickListener(view -> {
             deleteRecord(id);
             Intent i = new Intent(this, RestaurantPosting.class);
