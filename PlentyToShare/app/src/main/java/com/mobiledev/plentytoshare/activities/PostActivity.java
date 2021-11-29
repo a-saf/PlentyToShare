@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,7 +63,8 @@ public class PostActivity extends AppCompatActivity {
         foodType = findViewById(R.id.text_food_available);
         numServing = findViewById(R.id.text_food_servings);
         dbOrder = FirebaseDatabase.getInstance().getReference().child("orders");
-        username = "osmows";
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
 
         //Setting up Material Date Picker object
         MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
@@ -83,7 +85,7 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-        //Firebase Query
+//        //Firebase Query
 //        Query query = db.orderByChild("username").equalTo("osmows");
 //        query.addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -132,5 +134,10 @@ public class PostActivity extends AppCompatActivity {
         int orderID = existingOrders + 1;
         Orders order = new Orders(orderID,username,servingsValue,orderDate,expiryDate,status,null,foodTypeValue);
         dbOrder.child(String.valueOf(orderID)).setValue(order);
+
+        Intent intent = new Intent(this, RestaurantPosting.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
+
     }
 }

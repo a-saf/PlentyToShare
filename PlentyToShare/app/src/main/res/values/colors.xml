@@ -10,4 +10,5 @@
     <color name="contrast">#0FA3A0</color>
     <color name="grey">#282828</color>
     <color name="white">#FFFFFF</color>
+    <color name="light_grey">#f7faf8</color>
 </resources>

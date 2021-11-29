@@ -20,13 +20,22 @@
             android:name=".activities.CharitiesRequest"
             android:exported="false" />
         <activity
+            android:name=".activities.RestaurantEventBottomSheet"
+            android:exported="false" />
+        <activity
             android:name=".activities.RestaurantPosting"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailedOrder"
             android:exported="false" />
         <activity
             android:name=".activities.ChooseProfileTypeActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CharityPostings"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"

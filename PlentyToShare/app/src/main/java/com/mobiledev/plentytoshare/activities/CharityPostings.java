@@ -29,22 +29,21 @@ import com.mobiledev.plentytoshare.models.Orders;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class RestaurantPosting extends AppCompatActivity implements RVAdapterRestaurant.OrderViewHolder.OnOrderListener {
+public class CharityPostings extends AppCompatActivity implements RVAdapterRestaurant.OrderViewHolder.OnOrderListener {
     private ArrayList<Orders> orderList = new ArrayList<>();
     private RecyclerView orderRecyclerView;
     DatabaseReference dbOrder;
     String username;
     RVAdapterRestaurant orderAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_posting);
+        setContentView(R.layout.activity_charity_posting);
 
         //Get Firebase Restaurant Details
-        Intent intent = getIntent();
-
-        username = intent.getStringExtra("username");
+        username = "osmows";
         dbOrder = FirebaseDatabase.getInstance().getReference("orders");
 
         orderRecyclerView = findViewById(R.id.restaurant_recycler_view);
@@ -71,9 +70,9 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
     private void populateOrderList(){
         orderList = new ArrayList<>();
 
-        Query query = dbOrder.orderByChild("username").equalTo(username);
 
-        query.addValueEventListener(new ValueEventListener() {
+
+       dbOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 orderList.clear();
@@ -92,26 +91,15 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
             }
         });
 
+
     }
 
-    public void postFood(View view) {
-        Intent intent = new Intent(this, PostActivity.class);
-        intent.putExtra("username", username);
-        startActivity(intent);
-    }
-
+    //Take user to new activity where they can view details about the order
+    //video will also be played here
+    //will be able to click on restaurant's profile to view their information, as well as video
     @Override
     public void onOrderClick(int position) {
-        Intent intent = new Intent(this, DetailedOrder.class);
-        intent.putExtra("id", orderList.get(position).getOrderID());
-        intent.putExtra("username", orderList.get(position).getUsername());
-        intent.putExtra("servings", orderList.get(position).getNumOfServings());
-        intent.putExtra("date", orderList.get(position).getDate());
-        intent.putExtra("expiry", orderList.get(position).getExpiryDate());
-        intent.putExtra("status", orderList.get(position).getStatus());
-        intent.putExtra("pickup", orderList.get(position).getPickupTime());
-        intent.putExtra("type", orderList.get(position).getFoodType());
-        startActivity(intent);
+
 
 
 

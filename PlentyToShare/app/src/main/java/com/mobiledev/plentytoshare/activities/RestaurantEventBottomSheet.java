@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.mobiledev.plentytoshare.R;
 
-public class RestaurantEventBottomSheet extends BottomSheetDialogFragment {
+public class RestaurantEventBottomSheet extends AppCompatActivity {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
