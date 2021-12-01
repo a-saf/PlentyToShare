@@ -66,11 +66,12 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
         //Navigate to activity where they can post food
         Intent intent = new Intent(this, RestaurantPosting.class);
-        intent.putExtra("username", this.showUsername.getText());
-        intent.putExtra("phone", this.showPhoneNumber.getText());
-        intent.putExtra("foodType", this.showFoodType.getText());
-        intent.putExtra("name", this.showRestaurantName.getText());
-        intent.putExtra("address", this.showAddress.getText());
+        intent.putExtra("username", this.showUsername.getText().toString());
+
+        intent.putExtra("phone", this.showPhoneNumber.getText().toString());
+        intent.putExtra("foodType", this.showFoodType.getText().toString());
+        intent.putExtra("name", this.showRestaurantName.getText().toString());
+        intent.putExtra("address", this.showAddress.getText().toString());
         startActivity(intent);
     }
 

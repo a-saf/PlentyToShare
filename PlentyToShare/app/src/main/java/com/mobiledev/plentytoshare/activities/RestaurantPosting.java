@@ -1,7 +1,9 @@
 package com.mobiledev.plentytoshare.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -35,23 +37,29 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
     DatabaseReference dbOrder;
     String username;
     RVAdapterRestaurant orderAdapter;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_posting);
 
+        //Defining Toolbar and Up navigation
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_restaurant_recycler);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
         //Get Firebase Restaurant Details
         Intent intent = getIntent();
 
         username = intent.getStringExtra("username");
+        System.out.println("USERNAME: " + username);
         dbOrder = FirebaseDatabase.getInstance().getReference("orders");
+
 
         orderRecyclerView = findViewById(R.id.restaurant_recycler_view);
         displayOrders();
-
-
-
 
 
     }

@@ -3,11 +3,14 @@ package com.mobiledev.plentytoshare.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -21,13 +24,19 @@ import com.mobiledev.plentytoshare.models.Orders;
 
 public class DetailedOrder extends AppCompatActivity {
     DatabaseReference ref;
-    int id;
+    String id;
     public TextView view_order_id, view_servings, view_date, view_expiry, view_status, view_pickup, view_type;
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_detailed_order);
+
+        //Defining Toolbar and Up navigation
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_restaurant_detail);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         ref = FirebaseDatabase.getInstance().getReference("orders");
 
@@ -41,13 +50,13 @@ public class DetailedOrder extends AppCompatActivity {
         view_type = findViewById(R.id.detail_type);
 
         Intent intent = getIntent();
-        id = intent.getIntExtra("id", 0);
+        id = intent.getStringExtra("id");
         username = intent.getStringExtra("username");
 
 
         view_order_id.setText("ID: " + String.valueOf(id));
 
-        view_servings.setText("Servings" + String.valueOf(intent.getIntExtra("servings", 0)));
+        view_servings.setText("Servings: " + String.valueOf(intent.getIntExtra("servings", 0)));
         view_date.setText("Placed: " + intent.getStringExtra("date"));
         view_expiry.setText("Expires: " + intent.getStringExtra("expiry"));
         view_status.setText("Status: " + intent.getStringExtra("status"));
@@ -63,12 +72,27 @@ public class DetailedOrder extends AppCompatActivity {
             deleteRecord(id);
             Intent i = new Intent(this, RestaurantPosting.class);
             i.putExtra("username", username);
+
             startActivity(i);
         });
 
     }
 
-    void deleteRecord(int id){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // go to previous screen when app icon in action bar is clicked
+                Intent intent = new Intent(this, RestaurantPosting.class);
+                intent.putExtra("username", username);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    void deleteRecord(String id){
 
         Query deleteQuery = ref.orderByChild("orderID").equalTo(id);
         deleteQuery.addListenerForSingleValueEvent(new ValueEventListener() {

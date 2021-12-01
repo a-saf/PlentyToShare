@@ -8,6 +8,18 @@
 
     tools:context=".activities.RestaurantPosting"
     >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_restaurant_recycler"
+        app:title="Current Posts"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -16,6 +28,8 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintVertical_bias="0.743"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-1dp"/>

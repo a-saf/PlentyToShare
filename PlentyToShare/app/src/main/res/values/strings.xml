@@ -36,4 +36,6 @@
     <string name="status">Status</string>
     <string name="pickup_time">Pickup Time</string>
     <string name="food_type">Food Type</string>
+    <string name="order_date">Order Date</string>
+    <string name="food_expiry">Food Expiry</string>
 </resources>

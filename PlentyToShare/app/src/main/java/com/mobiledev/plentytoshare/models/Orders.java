@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Orders {
 
-    private int orderID;
+    private String orderID;
     private String username;
     private int numOfServings;
     private String date;
@@ -13,10 +13,11 @@ public class Orders {
     private String status;
     private LocalTime pickupTime;
     private String foodType;
+    private String address;
 
     public Orders() {}
 
-    public Orders(int orderID, String username, int numOfServings, String date, String expiryDate, String status, LocalTime pickupTime, String foodType) {
+    public Orders(String orderID, String username, int numOfServings, String date, String expiryDate, String status, LocalTime pickupTime, String foodType, String address) {
         this.orderID = orderID;
         this.username = username;
         this.numOfServings = numOfServings;
@@ -25,13 +26,22 @@ public class Orders {
         this.status = status;
         this.pickupTime = pickupTime;
         this.foodType = foodType;
+        this.address = address;
     }
 
-    public int getOrderID() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 

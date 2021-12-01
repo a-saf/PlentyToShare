@@ -10,21 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlentyToShare">
         <activity
-            android:name=".activities.PostActivity"
-            android:parentActivityName=".activities.RestaurantPosting"
+            android:name=".activities.CharityOrderDetail"
             android:exported="false" />
+        <activity
+            android:name=".activities.PostActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.RestaurantPosting" />
         <activity
             android:name=".activities.CharitiesRegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CharitiesRequest"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantEventBottomSheet"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantPosting"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.DetailedOrder"
             android:exported="false" />
@@ -36,7 +37,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.CharityPostings"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">

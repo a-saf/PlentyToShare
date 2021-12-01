@@ -51,11 +51,11 @@ public class CharitiesRegistrationActivity extends AppCompatActivity {
         //Add new charity object into Firebase
         ref.child(charity.username).setValue(charity);
         //Navigate to Page where Charities can see food available
-        Intent intent = new Intent(this, CharitiesRequest.class);
-        intent.putExtra("username", this.showUsername.getText());
-        intent.putExtra("name", this.showCharityName.getText());
-        intent.putExtra("phone", this.showPhoneNumber.getText());
-        intent.putExtra("address", this.showAddress.getText());
+        Intent intent = new Intent(this, CharityPostings.class);
+        intent.putExtra("username", this.showUsername.getText().toString());
+        intent.putExtra("name", this.showCharityName.getText().toString());
+        intent.putExtra("phone", this.showPhoneNumber.getText().toString());
+        intent.putExtra("address", this.showAddress.getText().toString());
         startActivity(intent);
     }
 }

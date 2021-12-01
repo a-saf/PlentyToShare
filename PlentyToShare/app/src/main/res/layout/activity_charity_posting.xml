@@ -9,10 +9,25 @@
     tools:context=".activities.RestaurantPosting"
     >
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_charity_view"
+        app:title="Available Meals"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurant_recycler_view"
         android:layout_width="411dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="25dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
