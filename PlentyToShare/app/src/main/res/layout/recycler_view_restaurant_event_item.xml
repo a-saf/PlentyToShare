@@ -7,90 +7,95 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="12sp"
     android:layout_marginEnd="12sp"
+    android:elevation="20dp"
     android:layout_marginTop="12sp"
     android:background="@color/primary_light"
     android:orientation="horizontal">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:orientation="vertical"
-            android:layout_weight="66"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:id="@+id/servingsAvailable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="sans-serif-black"
-                android:hint="servings"
-                android:includeFontPadding="false"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:hint="Order Status:"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/expiry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:hint="expiry"
-                android:includeFontPadding="false"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/servingsAvailable" />
+        <TextView
+            android:id="@+id/servingsAvailable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:hint="Servings:"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:hint="Event date"
-                android:includeFontPadding="false"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/expiry" />
-        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="50"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/expiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:hint="Expiry Date:"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/servingsAvailable" />
 
-                <TextView
-                    android:id="@+id/type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="120dp"
-                    android:layout_marginTop="28dp"
-                    android:hint="type"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="120dp"
-                    android:hint="status"
-                    android:includeFontPadding="false"
-                    android:shadowColor="#000000"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="#000000"
-                    android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:orientation="vertical">
 
-            </LinearLayout>
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:hint="Food Type:"
+            android:fontFamily="sans-serif-black"
+            android:includeFontPadding="false"
+            android:textSize="24sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:hint="Order Date:"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/type" />
+
+
+    </LinearLayout>
 </LinearLayout>

@@ -45,6 +45,14 @@ public class RestaurantProfile extends AppCompatActivity {
     Button addressView;
     YouTubePlayerView youTubePlayerView;
     String youtubeID;
+    String id;
+    int servings;
+    String charityUsername;
+    String date;
+    String expiry;
+    String status;
+    String type;
+    String pickup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,14 @@ public class RestaurantProfile extends AppCompatActivity {
         //Get username from intent
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+        id = intent.getStringExtra("id");
+        charityUsername = intent.getStringExtra("charityusername");
+        servings = intent.getIntExtra("servings",0);
+        date = intent.getStringExtra("date");
+        expiry = intent.getStringExtra("expiry");
+        status = intent.getStringExtra("status");
+        type = intent.getStringExtra("type");
+        pickup = intent.getStringExtra("pickup");
 
         //Set Variables
         phoneView = findViewById(R.id.restaurant_phone_number);
@@ -72,6 +88,28 @@ public class RestaurantProfile extends AppCompatActivity {
         ab.setTitle(username.toUpperCase(Locale.ROOT));
         //Get restaurant details
         getData();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                // go to previous screen when app icon in action bar is clicked
+                Intent intent = new Intent(this, CharityOrderDetail.class);
+                intent.putExtra("restaurantusername", username);
+                intent.putExtra("id", id);
+                intent.putExtra("charityusername", charityUsername);
+                intent.putExtra("servings", servings);
+                intent.putExtra("date", date);
+                intent.putExtra("expiry", expiry);
+                intent.putExtra("status", status);
+                intent.putExtra("type", type);
+                intent.putExtra("pickup", pickup);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void getData(){
