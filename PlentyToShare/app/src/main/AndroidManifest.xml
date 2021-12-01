@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobiledev.plentytoshare">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlentyToShare">
+
+        <activity
+            android:name=".activities.RestaurantProfile"
+            android:parentActivityName=".activities.CharityOrderDetail"
+            android:exported="false" />
         <activity
             android:name=".activities.CharityOrderDetail"
+            android:launchMode="singleTask"
             android:exported="false" />
         <activity
             android:name=".activities.PostActivity"
@@ -18,9 +25,7 @@
             android:parentActivityName=".activities.RestaurantPosting" />
         <activity
             android:name=".activities.CharitiesRegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.RestaurantEventBottomSheet"
+            android:parentActivityName=".activities.ChooseProfileTypeActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantPosting"
@@ -31,9 +36,11 @@
             android:exported="false" />
         <activity
             android:name=".activities.ChooseProfileTypeActivity"
+            android:parentActivityName=".activities.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantRegistrationActivity"
+            android:parentActivityName=".activities.ChooseProfileTypeActivity"
             android:exported="false" />
         <activity
             android:name=".activities.CharityPostings"

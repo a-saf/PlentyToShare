@@ -38,4 +38,17 @@
     <string name="food_type">Food Type</string>
     <string name="order_date">Order Date</string>
     <string name="food_expiry">Food Expiry</string>
+    <string name="accept">Accept</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="restaurant_profile">Restaurant Profile</string>
+    <string name="phone">Phone</string>
+    <string-array name="pickup_time_array">
+        <item>10:00AM</item>
+        <item>12:00PM</item>
+        <item>2:00PM</item>
+        <item>4:00PM</item>
+        <item>6:00PM</item>
+        <item>8:00PM</item>
+    </string-array>
 </resources>

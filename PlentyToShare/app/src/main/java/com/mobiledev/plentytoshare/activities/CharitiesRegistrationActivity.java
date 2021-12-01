@@ -1,6 +1,8 @@
 package com.mobiledev.plentytoshare.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +29,13 @@ public class CharitiesRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charities_registration);
+
+        //Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_charities_register);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         this.showUsername = findViewById(R.id.text_username);
         this.showPassword = findViewById(R.id.text_password);

@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 }
                 else if(ch.isChecked()){
-                    System.out.println("imhere");
                     ref = FirebaseDatabase.getInstance().getReference("charities");
                     Query query = ref.orderByChild("username").equalTo(usernameValue);
 
@@ -118,7 +117,6 @@ public class LoginActivity extends AppCompatActivity {
                                     if(passwordValue.equals(pulledPassword)){
                                         Intent intent = new Intent(getApplicationContext(), CharityPostings.class);
                                         intent.putExtra("username", pulledUsername);
-                                        intent.putExtra("address", cha.getAddress());
                                         startActivity(intent);
                                     }
                                     else{

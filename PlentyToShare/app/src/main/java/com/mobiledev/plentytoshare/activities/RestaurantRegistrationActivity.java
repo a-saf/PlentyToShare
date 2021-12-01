@@ -6,7 +6,9 @@ import android.os.Parcelable;
 import android.view.View;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,12 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_registration);
+
+        //Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_restaurant_register);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         this.showUsername = findViewById(R.id.text_username);
         this.showPassword = findViewById(R.id.text_password);

@@ -86,26 +86,15 @@ public class PostActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-
                     Restaurant res = new Restaurant();
                     res = snapshot.getValue(Restaurant.class);
-
                     String pulledUsername = res.getUsername();
-
-
                     if(username.equals(pulledUsername)){
-
                         address = res.getAddress();
-
                     }
-
                 }
-
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.w("CANCELLED:", "OnCancelled", databaseError.toException());
@@ -131,24 +120,6 @@ public class PostActivity extends AppCompatActivity {
                 expiryDate = simpleFormat.format(date);
             }
         });
-
-//        //Firebase Query
-//        Query query = db.orderByChild("username").equalTo("osmows");
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot zoneSnapshot: dataSnapshot.getChildren()){
-//
-//                    Log.i("DB:", zoneSnapshot.child("username").getValue(String.class));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.w("CANCELLED:", "OnCancelled", databaseError.toException());
-//            }
-//        });
-
     }
 
     @Override

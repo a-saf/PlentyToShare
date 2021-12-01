@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RestaurantProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_restaurant_profile"
+        app:title=""
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <Button
+        android:id="@+id/restaurant_phone_number"
+        android:text="@string/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_baseline_call_24"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar_restaurant_profile"
+        android:backgroundTint="@color/accent"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:onClick="callNumber"
+        />
+
+    <Button
+        android:id="@+id/restaurant_address"
+        android:text="Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:drawableLeft="@drawable/ic_baseline_map_24"
+        android:backgroundTint="@color/primary_light"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_phone_number"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:onClick="navigateTo"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/youtube_player_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="YouTube Profile"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_youtube"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_address" />
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/profile_youtube"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_address" />
+</androidx.constraintlayout.widget.ConstraintLayout>
