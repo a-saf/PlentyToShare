@@ -8,9 +8,10 @@
 
     tools:context=".activities.RestaurantPosting"
     >
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar_restaurant_recycler"
-        app:title="Current Posts"
+        android:id="@+id/my_toolbar_charity_view"
+        app:title="Available Meals"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -25,29 +26,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurant_recycler_view"
         android:layout_width="411dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="25dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="25dp"
         app:layout_constraintVertical_bias="0.743"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-1dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addFoodAvailable"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/accent"
-        app:tint="@color/primary_dark"
-        android:clickable="true"
-        android:contentDescription="@string/add_new_event"
-        android:onClick="postFood"
-        android:layout_gravity="end|bottom"
-        app:fabCustomSize="75dp"
-        app:maxImageSize="36dp"
-        app:srcCompat="@drawable/outline_add_white_36" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

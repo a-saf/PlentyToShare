@@ -20,6 +20,12 @@ public class ChooseProfileTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_profile_type);
 
+        //Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_activity_choose);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
         Button restaurantBtn = findViewById(R.id.btn_restaurant);
         restaurantBtn.setOnClickListener(new View.OnClickListener() {
             @Override

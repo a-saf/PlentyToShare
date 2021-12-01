@@ -1,6 +1,8 @@
 package com.mobiledev.plentytoshare.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +30,13 @@ public class CharitiesRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charities_registration);
 
+        //Toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_charities_register);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
+
         this.showUsername = findViewById(R.id.text_username);
         this.showPassword = findViewById(R.id.text_password);
         this.showPhoneNumber = findViewById(R.id.text_phone_number);
@@ -51,11 +60,11 @@ public class CharitiesRegistrationActivity extends AppCompatActivity {
         //Add new charity object into Firebase
         ref.child(charity.username).setValue(charity);
         //Navigate to Page where Charities can see food available
-        Intent intent = new Intent(this, CharitiesRequest.class);
-        intent.putExtra("username", this.showUsername.getText());
-        intent.putExtra("name", this.showCharityName.getText());
-        intent.putExtra("phone", this.showPhoneNumber.getText());
-        intent.putExtra("address", this.showAddress.getText());
+        Intent intent = new Intent(this, CharityPostings.class);
+        intent.putExtra("username", this.showUsername.getText().toString());
+        intent.putExtra("name", this.showCharityName.getText().toString());
+        intent.putExtra("phone", this.showPhoneNumber.getText().toString());
+        intent.putExtra("address", this.showAddress.getText().toString());
         startActivity(intent);
     }
 }

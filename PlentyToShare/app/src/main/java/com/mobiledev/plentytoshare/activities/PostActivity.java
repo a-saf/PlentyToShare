@@ -6,9 +6,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -22,7 +25,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mobiledev.plentytoshare.R;
 import com.mobiledev.plentytoshare.models.Orders;
+import com.mobiledev.plentytoshare.models.Restaurant;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -30,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.UUID;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -40,12 +46,16 @@ public class PostActivity extends AppCompatActivity {
     String expiryDate;
     String foodTypeValue;
     int servingsValue;
+    DatabaseReference ref;
 
     int existingOrders;
     String orderDate;
     String status;
     LocalTime pickupTime;
     String username;
+    String key;
+    String address;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +72,35 @@ public class PostActivity extends AppCompatActivity {
         foodType = findViewById(R.id.text_food_available);
         numServing = findViewById(R.id.text_food_servings);
         dbOrder = FirebaseDatabase.getInstance().getReference().child("orders");
-        username = "osmows";
+        key = dbOrder.push().getKey();
+        System.out.println(key);
+
+
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+
+
+        ref = FirebaseDatabase.getInstance().getReference("restaurants");
+        Query query = ref.orderByChild("username").equalTo(username);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Restaurant res = new Restaurant();
+                    res = snapshot.getValue(Restaurant.class);
+                    String pulledUsername = res.getUsername();
+                    if(username.equals(pulledUsername)){
+                        address = res.getAddress();
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("CANCELLED:", "OnCancelled", databaseError.toException());
+            }
+        });
+
 
         //Setting up Material Date Picker object
         MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
@@ -82,36 +120,20 @@ public class PostActivity extends AppCompatActivity {
                 expiryDate = simpleFormat.format(date);
             }
         });
+    }
 
-        //Firebase Query
-//        Query query = db.orderByChild("username").equalTo("osmows");
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot zoneSnapshot: dataSnapshot.getChildren()){
-//
-//                    Log.i("DB:", zoneSnapshot.child("username").getValue(String.class));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.w("CANCELLED:", "OnCancelled", databaseError.toException());
-//            }
-//        });
-        dbOrder.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    existingOrders = (int) dataSnapshot.getChildrenCount();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // go to previous screen when app icon in action bar is clicked
+                Intent intent = new Intent(this, RestaurantPosting.class);
+                intent.putExtra("username", username);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -129,8 +151,13 @@ public class PostActivity extends AppCompatActivity {
         String status = "Available";
 
         //New Order id
-        int orderID = existingOrders + 1;
-        Orders order = new Orders(orderID,username,servingsValue,orderDate,expiryDate,status,null,foodTypeValue);
+        String orderID = key;
+        Orders order = new Orders(orderID,username,servingsValue,orderDate,expiryDate,status,null,foodTypeValue, address);
         dbOrder.child(String.valueOf(orderID)).setValue(order);
+
+        Intent intent = new Intent(this, RestaurantPosting.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
+
     }
 }

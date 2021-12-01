@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/layout_food_type_available"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="50dp"
         android:hint="@string/food_type"
         android:inputType="number"
         android:padding="10dp"
@@ -84,15 +84,22 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/accent"
         android:clickable="true"
+        android:onClick="createAvailable"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_save_24"
-        android:onClick="createAvailable"/>
+        app:rippleColor="@color/accent"
+        android:src="@drawable/outline_save_white_48"
+
+        app:tint="@color/primary_dark"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,8 +23,32 @@
     <string name="youtube_profile">YouTube Profile</string>
     <string name="charity_name">Charity Name</string>
     <string name="number_of_servings">Number of Servings</string>
-    <string name="food_type">Food Type</string>
     <string name="expiry_date">Expiry Date</string>
     <string name="share_food">Share Food</string>
     <string name="enter_available_food">Enter Available Food</string>
+    <string name="request">Request</string>
+    <string name="textview">TextView</string>
+    <string name="button">DELETE</string>
+    <string name="order_id">Order ID</string>
+    <string name="servings">Servings</string>
+    <string name="date">Date</string>
+    <string name="expiry">Expiry</string>
+    <string name="status">Status</string>
+    <string name="pickup_time">Pickup Time</string>
+    <string name="food_type">Food Type</string>
+    <string name="order_date">Order Date</string>
+    <string name="food_expiry">Food Expiry</string>
+    <string name="accept">Accept</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="restaurant_profile">Restaurant Profile</string>
+    <string name="phone">Phone</string>
+    <string-array name="pickup_time_array">
+        <item>10:00AM</item>
+        <item>12:00PM</item>
+        <item>2:00PM</item>
+        <item>4:00PM</item>
+        <item>6:00PM</item>
+        <item>8:00PM</item>
+    </string-array>
 </resources>
