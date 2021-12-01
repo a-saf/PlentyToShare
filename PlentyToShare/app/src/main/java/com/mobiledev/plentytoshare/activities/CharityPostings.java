@@ -101,7 +101,7 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
     }
 
     private void displayView(){
-        orderAdapter = new RVAdapterRestaurant(orderList, this);
+        orderAdapter = new RVAdapterRestaurant(orderList, this, username);
         orderRecyclerView.setAdapter(orderAdapter);
         orderRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

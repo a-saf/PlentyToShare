@@ -93,6 +93,7 @@ public class CharityOrderDetail extends AppCompatActivity{
         type = intent.getStringExtra("type");
         pickup = intent.getStringExtra("pickup");
 
+
         //Update Fields with data
         orderRestaurant.setText(new StringBuilder().append(orderRestaurant.getText().toString()).append(": ").append(restaurantUsername).toString());
         orderID.setText(new StringBuilder().append(orderID.getText().toString()).append(": ").append(id).toString());
@@ -101,12 +102,17 @@ public class CharityOrderDetail extends AppCompatActivity{
         orderExpiry.setText(new StringBuilder().append(orderExpiry.getText().toString()).append(": ").append(expiry).toString());
         orderType.setText(new StringBuilder().append(orderType.getText().toString()).append(": ").append(type).toString());
         orderStatus.setText(new StringBuilder().append(orderStatus.getText().toString()).append(": ").append(status).toString());
+        System.out.println("PICKUP " + pickup);
         if (pickup != null){
             orderPickup.setText(new StringBuilder().append(orderPickup.getText().toString()).append(": ").append(pickup).toString());
         }
+        else{
+            orderPickup.setText("Pickup Time");
+        }
 
-        //Toggle the order Buttons
-        if (orderStatus.equals(charityUsername)){
+//      Toggle the order Buttons
+        String a = orderStatus.getText().toString().split(":")[1].trim();
+        if (a.equals(charityUsername)){
             cancelBtn.setVisibility(View.VISIBLE);
             acceptBtn.setVisibility(View.INVISIBLE);
 
@@ -137,6 +143,14 @@ public class CharityOrderDetail extends AppCompatActivity{
             case R.id.action_restaurant_profile:
                 Intent intent = new Intent(this, RestaurantProfile.class);
                 intent.putExtra("username", restaurantUsername);
+                intent.putExtra("id", id);
+                intent.putExtra("charityusername", charityUsername);
+                intent.putExtra("servings", servings);
+                intent.putExtra("date", date);
+                intent.putExtra("expiry", expiry);
+                intent.putExtra("status", status);
+                intent.putExtra("type", type);
+                intent.putExtra("pickup", pickup);
                 startActivity(intent);
                 break;
             case android.R.id.home:
@@ -157,6 +171,7 @@ public class CharityOrderDetail extends AppCompatActivity{
     public void cancelOrder(View view) {
         ref.child(id).child("status").setValue("Available");
         ref.child(id).child("pickupTime").setValue(null);
+
         navigateBack();
     }
 

@@ -2,6 +2,7 @@ package com.mobiledev.plentytoshare.adapters;
 
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,12 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
 
     private final ArrayList<Orders> orders;
     private OrderViewHolder.OnOrderListener mOnOrderListener;
+    String username;
 
-    public RVAdapterRestaurant(ArrayList<Orders> orders, OrderViewHolder.OnOrderListener onOrderListener) {
+    public RVAdapterRestaurant(ArrayList<Orders> orders, OrderViewHolder.OnOrderListener onOrderListener, String username) {
         this.orders=orders;
         this.mOnOrderListener=onOrderListener;
+        this.username = username;
     }
 
     @NonNull
@@ -42,8 +45,12 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
+        Orders order = orders.get(position);
+        String status = order.getStatus();
+        if(status.trim().equals(username.trim())){
+            holder.itemView.setBackgroundColor(Color.parseColor("#0FA3A0"));
+        }
         holder.setOrder(orders.get(position));
-
     }
 
     @Override
@@ -65,7 +72,6 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
             super(itemView);
             date = itemView.findViewById(R.id.date);
             servingsAvailable = itemView.findViewById(R.id.servingsAvailable);
-            //pickupTime = itemView.findViewById(R.id.type);
             status = itemView.findViewById(R.id.status);
             type = itemView.findViewById(R.id.type);
             expiry = itemView.findViewById(R.id.expiry);
@@ -76,15 +82,12 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
         // Render address and coordinates as list items visible on main activity view
         @SuppressLint("SetTextI18n")
         void setOrder(Orders order) {
-            String dateString = "Placed on: " + convertDate(order.getDate());
-
+            String dateString = "Order Date: " + convertDate(order.getDate());
             date.setText(dateString);
-            //System.out.println(order.getDate() + " : " + order.getExpiryDate());
             servingsAvailable.setText("Servings: " + order.getNumOfServings());
-            //pickupTime.setText(String.valueOf(order.getPickupTime()));
             status.setText("Status: " + order.getStatus());
             type.setText("Type: " + order.getFoodType());
-            expiry.setText(order.getExpiryDate());
+            expiry.setText("Food Expiry: " + order.getExpiryDate());
         }
 
         public String convertDate(String str){

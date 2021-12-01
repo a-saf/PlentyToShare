@@ -64,7 +64,7 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
 
     }
     private void displayView(){
-        orderAdapter = new RVAdapterRestaurant(orderList, this);
+        orderAdapter = new RVAdapterRestaurant(orderList, this, username);
         orderRecyclerView.setAdapter(orderAdapter);
         orderRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

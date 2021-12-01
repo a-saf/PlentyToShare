@@ -84,12 +84,8 @@ public class LoginActivity extends AppCompatActivity {
                                     else{
                                         Toast.makeText(getApplicationContext(), "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
                                     }
-
                                 }
-
                             }
-
-
                         }
 
                         @Override
@@ -101,11 +97,9 @@ public class LoginActivity extends AppCompatActivity {
                 else if(ch.isChecked()){
                     ref = FirebaseDatabase.getInstance().getReference("charities");
                     Query query = ref.orderByChild("username").equalTo(usernameValue);
-
                     query.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                             for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                                 Charity cha = new Charity();
                                 cha = snapshot.getValue(Charity.class);
@@ -122,12 +116,8 @@ public class LoginActivity extends AppCompatActivity {
                                     else{
                                         Toast.makeText(getApplicationContext(), "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
                                     }
-
                                 }
-
                             }
-
-
                         }
 
                         @Override

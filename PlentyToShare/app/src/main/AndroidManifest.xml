@@ -14,41 +14,50 @@
         <activity
             android:name=".activities.RestaurantProfile"
             android:parentActivityName=".activities.CharityOrderDetail"
+            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".activities.CharityOrderDetail"
-            android:launchMode="singleTask"
+            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".activities.PostActivity"
             android:exported="false"
+            android:screenOrientation="sensor"
             android:parentActivityName=".activities.RestaurantPosting" />
         <activity
             android:name=".activities.CharitiesRegistrationActivity"
             android:parentActivityName=".activities.ChooseProfileTypeActivity"
+            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantPosting"
             android:exported="false"
+            android:screenOrientation="sensor"
             android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.DetailedOrder"
+            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".activities.ChooseProfileTypeActivity"
             android:parentActivityName=".activities.LoginActivity"
+            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".activities.RestaurantRegistrationActivity"
             android:parentActivityName=".activities.ChooseProfileTypeActivity"
+            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".activities.CharityPostings"
             android:exported="false"
+            android:screenOrientation="sensor"
             android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
