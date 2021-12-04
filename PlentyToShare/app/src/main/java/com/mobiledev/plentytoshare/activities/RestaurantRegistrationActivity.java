@@ -43,6 +43,7 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+        //Sets the global variables
         this.showUsername = findViewById(R.id.text_username);
         this.showPassword = findViewById(R.id.text_password);
         this.showPhoneNumber = findViewById(R.id.text_phone_number);
@@ -51,15 +52,14 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         this.showRegistrationId = findViewById(R.id.text_registration_id);
         this.showAddress = findViewById(R.id.text_location);
         this.showYouTube = findViewById(R.id.text_video_profile);
-
+        //Firebase reference object
         ref = FirebaseDatabase.getInstance().getReference().child("restaurants");
 
     }
 
 
     public void createAccount(View view) {
-//        boolean validInput = validateInput();
-
+        //Creates a new restaurant object using the input values by the user
         Restaurant res = new Restaurant(showUsername.getText().toString(),
                                         showPassword.getText().toString(),
                                         showPhoneNumber.getText().toString(),
@@ -72,10 +72,9 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         //Add Restaurant object under Firebase
         ref.child(res.username).setValue(res);
 
-        //Navigate to activity where they can post food
+        //Navigate to activity where they can post food sending their state
         Intent intent = new Intent(this, RestaurantPosting.class);
         intent.putExtra("username", this.showUsername.getText().toString());
-
         intent.putExtra("phone", this.showPhoneNumber.getText().toString());
         intent.putExtra("foodType", this.showFoodType.getText().toString());
         intent.putExtra("name", this.showRestaurantName.getText().toString());

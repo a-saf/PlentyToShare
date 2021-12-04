@@ -27,6 +27,7 @@ public class ChooseProfileTypeActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         Button restaurantBtn = findViewById(R.id.btn_restaurant);
+        //Clicking this button will let users create a new Restaurant profile
         restaurantBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +37,7 @@ public class ChooseProfileTypeActivity extends AppCompatActivity {
         });
 
         Button charityBtn = findViewById(R.id.btn_charity);
+        //Clicking this button will let users register a Charity profile
         charityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

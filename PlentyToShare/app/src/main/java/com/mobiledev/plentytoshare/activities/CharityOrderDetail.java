@@ -81,7 +81,7 @@ public class CharityOrderDetail extends AppCompatActivity{
         acceptBtn = findViewById(R.id.accept_charity_order_btn);
         ref = FirebaseDatabase.getInstance().getReference().child("orders");
 
-        //Get incoming data
+        //Get incoming data from intent
         Intent intent = getIntent();
         restaurantUsername = intent.getStringExtra("restaurantusername");
         id = intent.getStringExtra("id");
@@ -94,7 +94,7 @@ public class CharityOrderDetail extends AppCompatActivity{
         pickup = intent.getStringExtra("pickup");
 
 
-        //Update Fields with data
+        //Update Fields with data from the intent
         orderRestaurant.setText(new StringBuilder().append(orderRestaurant.getText().toString()).append(": ").append(restaurantUsername).toString());
         orderID.setText(new StringBuilder().append(orderID.getText().toString()).append(": ").append(id).toString());
         orderServings.setText(new StringBuilder().append(orderServings.getText().toString()).append(": ").append(servings).toString());
@@ -103,6 +103,7 @@ public class CharityOrderDetail extends AppCompatActivity{
         orderType.setText(new StringBuilder().append(orderType.getText().toString()).append(": ").append(type).toString());
         orderStatus.setText(new StringBuilder().append(orderStatus.getText().toString()).append(": ").append(status).toString());
         System.out.println("PICKUP " + pickup);
+        // only update when the pickup value is there
         if (pickup != null){
             orderPickup.setText(new StringBuilder().append(orderPickup.getText().toString()).append(": ").append(pickup).toString());
         }
@@ -110,7 +111,7 @@ public class CharityOrderDetail extends AppCompatActivity{
             orderPickup.setText("Pickup Time");
         }
 
-//      Toggle the order Buttons
+//      Toggle the order Buttons so only Accept is avaiable to open orders and cancel to already booked orders
         String a = orderStatus.getText().toString().split(":")[1].trim();
         if (a.equals(charityUsername)){
             cancelBtn.setVisibility(View.VISIBLE);
@@ -122,7 +123,7 @@ public class CharityOrderDetail extends AppCompatActivity{
             acceptBtn.setVisibility(View.VISIBLE);
         }
 
-        //Instantiate spinner
+        //Instantiate spinner to get a set amount of pickup times the charities can pick from
         spinner = findViewById(R.id.pickup_time_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.pickup_time_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -132,6 +133,7 @@ public class CharityOrderDetail extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //Create the menu for the activity, necessary to override the functionality of the "up" button
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -140,6 +142,7 @@ public class CharityOrderDetail extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            //Clicking on the restaurant profile icon will navigate to the Restaurant profile, sending data there which will need to be sent back to return to previous state
             case R.id.action_restaurant_profile:
                 Intent intent = new Intent(this, RestaurantProfile.class);
                 intent.putExtra("username", restaurantUsername);
@@ -162,6 +165,7 @@ public class CharityOrderDetail extends AppCompatActivity{
     }
 
     public void acceptOrder(View view) {
+        //Charities accepting orders Sets the status of the order as the charities name and also to their desired pickup time
         pickupTimeSelected = spinner.getSelectedItem().toString();
         ref.child(id).child("status").setValue(charityUsername);
         ref.child(id).child("pickupTime").setValue(pickupTimeSelected);
@@ -169,6 +173,7 @@ public class CharityOrderDetail extends AppCompatActivity{
     }
 
     public void cancelOrder(View view) {
+        //Charities cancelling orders Sets the status of the order to Available and removes the pickup time
         ref.child(id).child("status").setValue("Available");
         ref.child(id).child("pickupTime").setValue(null);
 
@@ -176,6 +181,7 @@ public class CharityOrderDetail extends AppCompatActivity{
     }
 
     public void navigateBack(){
+        //Navigates charities back to the food available page, sending state back
         Intent intent = new Intent(this, CharityPostings.class);
         intent.putExtra("username", charityUsername);
         startActivity(intent);

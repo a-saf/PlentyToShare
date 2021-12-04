@@ -14,6 +14,7 @@ public class Orders {
 
     public Orders() {}
 
+    //Food available order model and the associated getters and setters
     public Orders(String orderID, String username, int numOfServings, String date, String expiryDate, String status, String pickupTime, String foodType, String address) {
         this.orderID = orderID;
         this.username = username;
