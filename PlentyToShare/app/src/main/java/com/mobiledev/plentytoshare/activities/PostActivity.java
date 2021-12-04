@@ -68,19 +68,20 @@ public class PostActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        //Instantiate Vars
+        //Instantiate global variables
         foodType = findViewById(R.id.text_food_available);
         numServing = findViewById(R.id.text_food_servings);
-        dbOrder = FirebaseDatabase.getInstance().getReference().child("orders");
-        key = dbOrder.push().getKey();
+        dbOrder = FirebaseDatabase.getInstance().getReference().child("orders"); //Firebase database reference
+        key = dbOrder.push().getKey(); //Get a unique order id from firebase to save the order into
         System.out.println(key);
 
 
-
+        //Get the state data from the incoming intent
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
 
-
+        //Used to iterate over the firebase restaurant table to get the address of the restaurant which
+        //is required to create a new order
         ref = FirebaseDatabase.getInstance().getReference("restaurants");
         Query query = ref.orderByChild("username").equalTo(username);
         query.addValueEventListener(new ValueEventListener() {
@@ -139,10 +140,12 @@ public class PostActivity extends AppCompatActivity {
 
 
     public void expiryDate(View view) {
+        //Shows the material design date picker to pick the expiry
         datePicker.show(getSupportFragmentManager(), "EXPIRY_DATE_PICKER");
     }
 
     public void createAvailable(View view) {
+        //Get the values of the food type and number of servings
         foodTypeValue = foodType.getText().toString();
         servingsValue = Integer.parseInt(numServing.getText().toString());
 
@@ -150,11 +153,12 @@ public class PostActivity extends AppCompatActivity {
         orderDate = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
         String status = "Available";
 
-        //New Order id
+        //Create a new Order and push it to firebase
         String orderID = key;
         Orders order = new Orders(orderID,username,servingsValue,orderDate,expiryDate,status,null,foodTypeValue, address);
         dbOrder.child(String.valueOf(orderID)).setValue(order);
 
+        //Navigate back to the previous activity once posted with the state
         Intent intent = new Intent(this, RestaurantPosting.class);
         intent.putExtra("username", username);
         startActivity(intent);

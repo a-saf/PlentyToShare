@@ -113,6 +113,7 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     public void getData(){
+        //Gets the Restaurants profile from firebase table
         ref = FirebaseDatabase.getInstance().getReference("restaurants");
         Query query = ref.orderByChild("username").equalTo(username);
         query.addValueEventListener(new ValueEventListener() {
@@ -122,6 +123,7 @@ public class RestaurantProfile extends AppCompatActivity {
                     Restaurant res = new Restaurant();
                     res = snapshot.getValue(Restaurant.class);
                     String pulledUsername = res.getUsername();
+                    //Sets the address, phone and youtube variables which the users can interact with
                     if(username.equals(pulledUsername)){
                         address = res.getAddress();
                         phone = res.getPhoneNumber();
@@ -139,9 +141,11 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     public void displayData(){
+        //Sets the data which is retrieved from firebase to the buttons
         phoneView.setText(new StringBuilder().append(phoneView.getText().toString()).append("\n").append(phone).toString());
         addressView.setText(new StringBuilder().append(addressView.getText().toString()).append("\n").append(address).toString());
         youtubeID = youtube.split("=")[1];
+        //Populates the youtube video player with the restaurant's profile
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(YouTubePlayer youTubePlayer) {
@@ -152,6 +156,7 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     public void callNumber(View view) {
+        //Creates a dialer intent which lets user click on the button and open the dialer with the phone number
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + phone));
         System.out.println(phone);
@@ -159,6 +164,7 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     public void navigateTo(View view) {
+        //Creates an intent which lets users click on the button and open google maps navigation to the restaurant's address
         String geoUri = "http://maps.google.com/maps?q=loc:" + address;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
         startActivity(intent);

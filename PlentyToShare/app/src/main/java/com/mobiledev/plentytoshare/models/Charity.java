@@ -12,6 +12,7 @@ public class Charity {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
+    //Charity model with the associated getters and setters
     public Charity(String username, String password, String phoneNumber, String charityName, String registrationID, String address) {
 
         this.username = username;

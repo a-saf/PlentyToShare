@@ -35,15 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
+        //Instantiate global variables for the fields
         ch = findViewById(R.id.radio_button_charity);
         res = findViewById(R.id.radio_button_restaurant);
         this.username = findViewById(R.id.input_username);
         this.password = findViewById(R.id.input_password);
 
-
-
-
-
+        //Button to start the registration process and the listener for it
         Button newAccountBtn = findViewById(R.id.register_button);
         newAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,14 +52,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //Login button and its association listener
         Button loginBtn = findViewById(R.id.signin_button);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Get the values for username and password
                 usernameValue = username.getText().toString();
                 passwordValue = password.getText().toString();
 
                 if(res.isChecked()){
+                    //If the restaurant login radial button is checked then iterate over the restaurant table
+                    //Check if the username exists or not
                     ref = FirebaseDatabase.getInstance().getReference("restaurants");
                     Query query = ref.orderByChild("username").equalTo(usernameValue);
 
@@ -75,13 +78,16 @@ public class LoginActivity extends AppCompatActivity {
                                 String pulledUsername = res.getUsername();
 
                                 String pulledPassword = res.getPassword();
+                                //If a username matches one in the database then check whether the input password matches as well
                                 if(usernameValue.equals(pulledUsername)){
+                                    //If credentials match then navigate them to the Restaurant Posting activity
                                     if(passwordValue.equals(pulledPassword)){
                                         Intent intent = new Intent(getApplicationContext(), RestaurantPosting.class);
                                         intent.putExtra("username", pulledUsername);
                                         startActivity(intent);
                                     }
                                     else{
+                                        //If invalid credentials then alert the user
                                         Toast.makeText(getApplicationContext(), "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -95,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 }
                 else if(ch.isChecked()){
+                    //If the charity login radial button is checked then iterate over the charities table
+                    //Check if the username exists or not
                     ref = FirebaseDatabase.getInstance().getReference("charities");
                     Query query = ref.orderByChild("username").equalTo(usernameValue);
                     query.addValueEventListener(new ValueEventListener() {
@@ -108,31 +116,26 @@ public class LoginActivity extends AppCompatActivity {
 
                                 String pulledPassword = cha.getPassword();
                                 if(usernameValue.equals(pulledUsername)){
+                                    //If credentials match then navigate them to the Charity Available Posting activity
                                     if(passwordValue.equals(pulledPassword)){
                                         Intent intent = new Intent(getApplicationContext(), CharityPostings.class);
                                         intent.putExtra("username", pulledUsername);
                                         startActivity(intent);
                                     }
                                     else{
+                                        //If invalid credentials then alert the user
                                         Toast.makeText(getApplicationContext(), "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             Log.w("CANCELLED:", "OnCancelled", databaseError.toException());
                         }
                     });
                 }
-
-
-
             }
         });
-
-
     }
-
 }

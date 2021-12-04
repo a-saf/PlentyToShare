@@ -52,6 +52,7 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charity_posting);
 
+        //Create a Geocoder instance
         coder = new Geocoder(this);
 
         //Defining Toolbar and Up navigation
@@ -60,11 +61,12 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+        //Get the state from the previous activity
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         address = "";
 
-        //Get Address and Lat and Long
+        //Get Address and Lat and Long of the Charity to calculate distace
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("charities");
         Query query = ref.orderByChild("username").equalTo(username);
         query.addValueEventListener(new ValueEventListener() {
@@ -88,6 +90,7 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
     }
 
     public void getAddress(String address){
+        //Uses geocoder to get a LatLng object from an address
         LatLng charityLatLong = getLatLongFromAddress(address);
         latitude = charityLatLong.latitude;
         longitude = charityLatLong.longitude;
@@ -95,12 +98,14 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
     }
 
     public void firebaseRecyclerView(){
+        //Starts the process of populating the Recyclerview from the orders table
         dbOrder = FirebaseDatabase.getInstance().getReference("orders");
         orderRecyclerView = findViewById(R.id.restaurant_recycler_view);
         displayOrders();
     }
 
     private void displayView(){
+        //Uses the RVAdapter to populate the Recyclerview with a linear layout
         orderAdapter = new RVAdapterRestaurant(orderList, this, username);
         orderRecyclerView.setAdapter(orderAdapter);
         orderRecyclerView.setLayoutManager(
@@ -110,32 +115,32 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
 
 
     private void displayOrders(){
+        //Routing method to order how population should occur
         populateOrderList();
         displayView();
     }
 
     private void populateOrderList(){
+        //ArrayList object which will hold all the orders available
         orderList = new ArrayList<>();
-
-
-
+        // Used to iterate over the firebase data in and retreive values
        dbOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 orderList.clear();
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-
-
-
+                    //For every entry in the firebase db create a new Order object
                     Orders order = new Orders();
                     order = snapshot.getValue(Orders.class);
+                    //Get the order object's address and use that to get the Lat, Long pair
                     LatLng restaurantLatLng = getLatLongFromAddress(order.getAddress());
                     double restaurantLatitude = restaurantLatLng.latitude;
                     double restaurantLongitude = restaurantLatLng.longitude;
 
                     float[] results = new float[1];
+                    //Calculates the distance between the Charity and Restaurant in the order
                     Location.distanceBetween(latitude, longitude , restaurantLatitude, restaurantLongitude, results);
-
+                    //Only display the orders in a 20Km radius of the charity
                     if(results[0]<20000){
                         orderList.add(order);
                     }
@@ -155,7 +160,7 @@ public class CharityPostings extends AppCompatActivity implements RVAdapterResta
     public LatLng getLatLongFromAddress(String strAddress){
         List<Address> address;
         LatLng p1 = null;
-
+        //Use geocoder to create a LatLng object
         try {
             address = coder.getFromLocationName(strAddress,2);
             if (address == null){

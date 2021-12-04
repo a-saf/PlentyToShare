@@ -38,10 +38,11 @@ public class DetailedOrder extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+        //Firebase referece
         ref = FirebaseDatabase.getInstance().getReference("orders");
 
+        //Instantiate the global variables
         view_order_id = findViewById(R.id.detail_orderid);
-
         view_servings = findViewById(R.id.detail_servings);
         view_date = findViewById(R.id.detail_date);
         view_expiry = findViewById(R.id.detail_expiry);
@@ -49,13 +50,13 @@ public class DetailedOrder extends AppCompatActivity {
         view_pickup = findViewById(R.id.detail_pickup);
         view_type = findViewById(R.id.detail_type);
 
+        //Unpack the state information coming in from the previous activity
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         username = intent.getStringExtra("username");
 
-
+        //Set the values of the field to the order details
         view_order_id.setText("ID: " + String.valueOf(id));
-
         view_servings.setText("Servings: " + String.valueOf(intent.getIntExtra("servings", 0)));
         view_date.setText("Placed: " + intent.getStringExtra("date"));
         view_expiry.setText("Expires: " + intent.getStringExtra("expiry"));
@@ -68,6 +69,7 @@ public class DetailedOrder extends AppCompatActivity {
         view_type.setText("Food Type: " + intent.getStringExtra("type"));
 
         Button deleteButton = findViewById(R.id.delete_btn);
+        //Delete an available food posting and navigate back to the previous activity
         deleteButton.setOnClickListener(view -> {
             deleteRecord(id);
             Intent i = new Intent(this, RestaurantPosting.class);
@@ -81,6 +83,7 @@ public class DetailedOrder extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            //Used to override the default up button functionality and add an intent to it
             case android.R.id.home:
                 // go to previous screen when app icon in action bar is clicked
                 Intent intent = new Intent(this, RestaurantPosting.class);
@@ -93,15 +96,12 @@ public class DetailedOrder extends AppCompatActivity {
     }
 
     void deleteRecord(String id){
-
+        //Iterates over the Firebase database and deletes the order which has the matching ID
         Query deleteQuery = ref.orderByChild("orderID").equalTo(id);
         deleteQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot orderSnapshot: dataSnapshot.getChildren()){
-//                    Orders order = new Orders();
-//                    order = orderSnapshot.getValue(Orders.class);
-                    //System.out.println(order.getOrderID());
                     orderSnapshot.getRef().removeValue();
                 }
 

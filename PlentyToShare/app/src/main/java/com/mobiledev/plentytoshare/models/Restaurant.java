@@ -14,6 +14,7 @@ public class Restaurant {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
+    //Restaurant model and the associated getter and setter
     public Restaurant(String username, String password, String phoneNumber, String foodType, String restaurantName, String registrationID, String address, String youtube) {
 
         this.username = username;

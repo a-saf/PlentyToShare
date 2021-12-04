@@ -25,6 +25,7 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
     private OrderViewHolder.OnOrderListener mOnOrderListener;
     String username;
 
+    //Creates a new Adapter
     public RVAdapterRestaurant(ArrayList<Orders> orders, OrderViewHolder.OnOrderListener onOrderListener, String username) {
         this.orders=orders;
         this.mOnOrderListener=onOrderListener;
@@ -34,6 +35,7 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Creates a View Holder which is inflated
         return new OrderViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.recycler_view_restaurant_event_item,
@@ -45,8 +47,11 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
+        //On binding the holder get the order and the status
         Orders order = orders.get(position);
         String status = order.getStatus();
+        //If the username of the charity matches the status then the background of the tile gets changed
+        //to indicate they have already booked this order
         if(status.trim().equals(username.trim())){
             holder.itemView.setBackgroundColor(Color.parseColor("#0FA3A0"));
         }
@@ -63,6 +68,7 @@ public class RVAdapterRestaurant extends RecyclerView.Adapter<RVAdapterRestauran
         return position;
     }
 
+    //Class used to populate the recyclerview
     public static class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView date, servingsAvailable, pickupTime, status, type, expiry;

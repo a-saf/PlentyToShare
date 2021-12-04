@@ -36,7 +36,7 @@ public class CharitiesRegistrationActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-
+        //Instantiating all the Fields
         this.showUsername = findViewById(R.id.text_username);
         this.showPassword = findViewById(R.id.text_password);
         this.showPhoneNumber = findViewById(R.id.text_phone_number);
@@ -44,6 +44,7 @@ public class CharitiesRegistrationActivity extends AppCompatActivity {
         this.showRegistrationId = findViewById(R.id.text_registration_id);
         this.showAddress = findViewById(R.id.text_location);
 
+        //Creating Firebase reference
         ref = FirebaseDatabase.getInstance().getReference().child("charities");
 
     }

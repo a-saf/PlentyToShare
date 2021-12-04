@@ -50,20 +50,20 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        //Get Firebase Restaurant Details
+        //Get Firebase Restaurant Details using the incoming state
         Intent intent = getIntent();
-
         username = intent.getStringExtra("username");
         System.out.println("USERNAME: " + username);
         dbOrder = FirebaseDatabase.getInstance().getReference("orders");
 
-
+        //Start process of updating the recyclerview
         orderRecyclerView = findViewById(R.id.restaurant_recycler_view);
         displayOrders();
 
 
     }
     private void displayView(){
+        //Creates an apadter to populate the recyclerview with a linear layout and the order objects
         orderAdapter = new RVAdapterRestaurant(orderList, this, username);
         orderRecyclerView.setAdapter(orderAdapter);
         orderRecyclerView.setLayoutManager(
@@ -71,16 +71,20 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
         );
     }
 
-
+    //Router function
     private void displayOrders(){
         populateOrderList();
         displayView();
     }
-    private void populateOrderList(){
-        orderList = new ArrayList<>();
 
+    private void populateOrderList(){
+        //Create an arraylist object for orders
+        orderList = new ArrayList<>();
+        //Setup a firebase query
         Query query = dbOrder.orderByChild("username").equalTo(username);
 
+        //Iterates over the firebase table and for every object creates a new Order object to add to the arraylist
+        //which is used to populate the recyceler view
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -102,12 +106,14 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
 
     }
 
+    //Onclick listener for the Fab which allows restaurants to post new food
     public void postFood(View view) {
         Intent intent = new Intent(this, PostActivity.class);
         intent.putExtra("username", username);
         startActivity(intent);
     }
 
+    //Onclick listener for clicking an existing post and passing the order details to the child activity
     @Override
     public void onOrderClick(int position) {
         Intent intent = new Intent(this, DetailedOrder.class);
@@ -120,8 +126,5 @@ public class RestaurantPosting extends AppCompatActivity implements RVAdapterRes
         intent.putExtra("pickup", orderList.get(position).getPickupTime());
         intent.putExtra("type", orderList.get(position).getFoodType());
         startActivity(intent);
-
-
-
     }
 }
